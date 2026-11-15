@@ -137,10 +137,25 @@ unless the protagonist is in the shop, and go all-in below 30 HP.
 
 ## Known limitations
 
-- Post-click verification is minimal: the loop verifies the *screen* before
-  acting, not that every click succeeded.
-- `templates/items` is still placeholder data; only verified items are used.
-- The item names in recipes are mapped through `unit_registry.json`; the
-  shipped aliases cover the known mismatches, not every future item.
-- No installer/signing; `build_exe.py` produces an unsigned PyInstaller build.
-- No version control history: this folder is not a git repository.
+- **Post-click verification is minimal.** The loop checks the screen *before*
+  acting (scene matching + HUD sanity gate), but does not re-check whether a
+  click or drag actually landed. A missed click is not retried. This is a
+  deliberate trade-off: every verification cycle adds 200-500 ms of template
+  matching and OCR, and the event timer is tight enough that the bot must act
+  quickly in prep phase.
+- **Item templates are still placeholder data.** The `templates/items/` folder
+  was populated by download scripts that guessed item IDs, so many icons are
+  wrong. Crafting/equipping stays disabled until you add confirmed slugs to
+  `unit_registry.json` → `items.verified`. See the [first-run checklist](#first-run-checklist) step 5.
+- **Recipe name mappings may be incomplete.** The item names in `crafting_recipes`
+  are resolved through `unit_registry.json` aliases. The shipped aliases cover
+  the known mismatches for v4.7, but future items or language variants will
+  need new entries. If a recipe component is ignored, check `unit_registry.json`
+  → `items.aliases`.
+- **No installer or code signing.** `build_exe.py` produces an unsigned
+  PyInstaller bundle. Windows Defender / SmartScreen may flag it. Pass the
+  folder through a virus total false-positive process, or run from source with
+  `python currency_wars_app-v9.py`.
+- **No retry logic on capture failures.** If a single WGC frame capture fails
+  (e.g. the window is minimised or D3D is busy), the loop logs it and moves on.
+  Persistent failures stop the loop.
