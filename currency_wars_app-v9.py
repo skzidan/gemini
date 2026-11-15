@@ -146,7 +146,9 @@ def is_admin() -> bool:
 class InputSimulation:
     def __init__(self, config: dict):
         self.config = config
-        self.dry_run = config.get("automation", {}).get("dry_run", False)
+        # Safety: default to dry-run so a config without an explicit value can
+        # never silently enable live clicks against the game window.
+        self.dry_run = config.get("automation", {}).get("dry_run", True)
         self.window_title = config.get("window_title", "Honkai: Star Rail")
         self.hwnd = None
         # Set by the app so dry-run actions show up in the GUI log, not stdout.
@@ -1213,7 +1215,8 @@ class CurrencyWarsApp:
             "vision": {"min_edges": 900},
             "automation": {
                 "enable_auto_battle": True, "battle_timeout_seconds": 180, "max_runs": 0, "delay_between_runs_seconds": 2.5,
-                "dry_run": False, "enable_shop_auto_buy": True,
+                # Safety: dry-run is on by default. Live clicks require explicitly setting this to false.
+                "dry_run": True, "enable_shop_auto_buy": True,
                 "enable_auto_xp_leveling": True, "enable_bench_deployment": True, "enable_protagonist_plot_armor": True,
                 "enable_equipment_crafting": True, "enable_board_unit_detection": True, "enable_escapade_handler": True,
                 "enable_live_overlay": True, "require_prep_ui": True, "advance_on_unknown": False,
@@ -1300,6 +1303,14 @@ class CurrencyWarsApp:
         if not is_admin():
             self._startup_warnings.append(
                 "Not running as Administrator - global F10/F12 hotkeys and clicks may not fire."
+            )
+        # Safety: if dry_run is not explicitly true, flag that the bot will send
+        # live clicks so this can never go unnoticed.
+        if not self.config.get("automation", {}).get("dry_run", True):
+            self._startup_warnings.append(
+                "WARNING: dry_run is OFF. The bot will send REAL clicks (PostMessage) to the game window. "
+                "Enable 'Dry Run Mode' in the Strategy tab, or set automation.dry_run=true in config.json, "
+                "before letting it run unattended."
             )
         if HAS_TESSERACT:
             try:
@@ -1713,7 +1724,8 @@ class CurrencyWarsApp:
                 cur[key] = var.get()
             else:
                 cur[key] = coerce_number(var.get(), fallback=cur.get(key, var.get()))
-        self.input_sim.dry_run = self.config.get("automation", {}).get("dry_run", False)
+        # Default to dry-run so saving can never accidentally switch to live.
+        self.input_sim.dry_run = self.config.get("automation", {}).get("dry_run", True)
         _write_json_atomic(self.config_path, self.config)
         self.log("Saved configuration to config.json")
 
@@ -1925,7 +1937,8 @@ class CurrencyWarsApp:
         advance_unknown = bool(automation.get("advance_on_unknown", False))
         battle_timeout = float(automation.get("battle_timeout_seconds", 180) or 0)
         wait_for_window = float(automation.get("wait_for_window_seconds", 0) or 0)
-        dry_run = bool(automation.get("dry_run", False))
+        # Default to dry-run so a misconfigured config can never silently go live.
+        dry_run = bool(automation.get("dry_run", True))
 
         self.log("=== Currency Wars v4.7 Automation Loop Started ===")
         self.log(
@@ -2140,7 +2153,7 @@ def run_self_test(app: "CurrencyWarsApp", verbose: bool = False) -> tuple[bool, 
     automation = app.config.get("automation", {})
     ok_line(
         "Actions: "
-        + ("DRY-RUN (no clicks sent)" if automation.get("dry_run", False) else "LIVE")
+        + ("DRY-RUN (no clicks sent)" if automation.get("dry_run", True) else "LIVE")
         + f", require_prep_ui={bool(automation.get('require_prep_ui', True))}"
     )
     if not automation.get("require_prep_ui", True):
