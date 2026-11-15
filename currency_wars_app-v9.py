@@ -1129,7 +1129,7 @@ class CurrencyWarsApp:
         else:
             self.root = root
             self.root.title("HSR Currency Wars v4.7 Automation Suite (Background)")
-            self.root.geometry("880x700")
+            self.root.geometry("900x720")
             self.root.configure(bg="#0A0E1A")
             # Tk swallows callback exceptions into stderr, which a windowed
             # build does not have. Route them to the log and a dialog instead.
@@ -1280,6 +1280,22 @@ class CurrencyWarsApp:
         else:
             self.log(f"[Error] Game path not found or invalid: {path}")
 
+    def _open_captures(self):
+        captures = self.base_dir / "captures"
+        captures.mkdir(exist_ok=True)
+        self.log(f"[System] Opening captures folder: {captures}")
+        try:
+            if os.name == "nt":
+                os.startfile(str(captures))  # noqa: S606
+            else:
+                subprocess.Popen(["xdg-open", str(captures)])
+        except Exception as e:
+            self.log(f"[Error] Could not open captures folder: {e}")
+
+    def _set_status(self, text: str, color: str = "#38BDF8"):
+        if getattr(self, "status_lbl", None) is not None:
+            self.status_lbl.config(text=text, foreground=color)
+
     def _startup_diagnostics(self):
         if not is_admin():
             self._startup_warnings.append(
@@ -1372,6 +1388,9 @@ class CurrencyWarsApp:
         def _apply():
             self.paused = not self.paused
             self.log(f"[Hotkey] Automation {'PAUSED' if self.paused else 'RESUMED'}")
+            if self.running:
+                self._set_status("PAUSED" if self.paused else "RUNNING",
+                                 "#F59E0B" if self.paused else "#22C55E")
         self._post_ui(_apply)
 
     def _stop_automation(self):
@@ -1533,6 +1552,8 @@ class CurrencyWarsApp:
         style = ttk.Style(self.root)
         style.theme_use("clam")
         style.configure("TFrame", background="#0F172A")
+        style.configure("TLabelframe", background="#0F172A", foreground="#00E5FF", font=("Segoe UI", 10, "bold"))
+        style.configure("TLabelframe.Label", background="#0F172A", foreground="#00E5FF", font=("Segoe UI", 10, "bold"))
         style.configure("TLabel", background="#0F172A", foreground="#F1F5F9", font=("Segoe UI", 10))
         style.configure("TCheckbutton", background="#0F172A", foreground="#F1F5F9", font=("Segoe UI", 10))
         style.configure("TButton", background="#334155", foreground="#F1F5F9", font=("Segoe UI", 10), padding=6)
@@ -1542,11 +1563,11 @@ class CurrencyWarsApp:
         style.map("TNotebook.Tab", background=[("selected", "#1F2937")], foreground=[("selected", "#00E5FF")])
 
         nb = ttk.Notebook(self.root)
-        nb.pack(fill="both", expand=True, padx=10, pady=10)
+        nb.pack(fill="both", expand=True, padx=10, pady=(10, 4))
         self.tab_strat = ttk.Frame(nb)
         self.tab_general = ttk.Frame(nb)
         self.tab_output = ttk.Frame(nb)
-        nb.add(self.tab_strat, text="v4.7 Strategy & Board AI")
+        nb.add(self.tab_strat, text="Strategy")
         nb.add(self.tab_general, text="Window & Safety")
         nb.add(self.tab_output, text="Live Output")
 
@@ -1555,46 +1576,65 @@ class CurrencyWarsApp:
         self._build_output_tab()
 
         bar = ttk.Frame(self.root)
-        bar.pack(fill="x", padx=10, pady=8)
+        bar.pack(fill="x", padx=10, pady=(4, 2))
         ttk.Button(bar, text="Save Config", command=self._save_from_ui).pack(side="left", padx=4)
         ttk.Button(bar, text="Calibrate ROIs", command=self._launch_calibrator).pack(side="left", padx=4)
         ttk.Button(bar, text="Toggle HUD", command=self.overlay.toggle).pack(side="left", padx=4)
+        ttk.Button(bar, text="Launch Game", command=self.launch_game).pack(side="left", padx=4)
+        ttk.Button(bar, text="Open captures", command=self._open_captures).pack(side="left", padx=4)
         self.start_btn = ttk.Button(bar, text="Start Bot", style="Accent.TButton", command=self._start_thread)
         self.start_btn.pack(side="right", padx=4)
         ttk.Button(bar, text="Stop (F12)", command=self._stop_automation).pack(side="right", padx=4)
 
+        self.status_lbl = ttk.Label(self.root, text="Ready - Dry Run ON by default",
+                                    anchor="w", foreground="#38BDF8", background="#0F172A", padding=(10, 4))
+        self.status_lbl.pack(fill="x", padx=10, pady=(0, 8))
+
     def _build_strategy_tab(self):
         fr = self.tab_strat
-        ttk.Label(fr, text="Active Season 2 Archetype:").grid(row=0, column=0, sticky="w", padx=8, pady=8)
+        ttk.Label(fr, text="Active Season 2 Archetype:").grid(row=0, column=0, sticky="w", padx=(8,4), pady=(8,4))
         strat_ids = [s["id"] for s in self.strategy_db.get("strategies", [])] or ["combo_aglaea"]
         self.strat_var = tk.StringVar(value=self.config.get("active_strategy_id", strat_ids[0]))
         cb = ttk.Combobox(fr, textvariable=self.strat_var, values=strat_ids, state="readonly", width=36)
-        cb.grid(row=0, column=1, sticky="w", padx=8, pady=8)
+        cb.grid(row=0, column=1, sticky="w", padx=8, pady=(8,4))
         cb.bind("<<ComboboxSelected>>", lambda _: self._refresh_strategy_summary())
         self.summary_lbl = ttk.Label(fr, text="", foreground="#38BDF8", justify="left")
-        self.summary_lbl.grid(row=1, column=0, columnspan=2, sticky="w", padx=8, pady=4)
+        self.summary_lbl.grid(row=1, column=0, columnspan=3, sticky="w", padx=8, pady=(0, 4))
         self._refresh_strategy_summary()
 
-        toggles = [
-            ("Enable Shop Auto-Buy (30g Interest Protection & 2-Refresh Pity)", ("automation", "enable_shop_auto_buy")),
-            ("Enable Automated Shop XP Leveling", ("automation", "enable_auto_xp_leveling")),
-            ("Enable Bench-to-Board Auto-Deployment & Filler Swap", ("automation", "enable_bench_deployment")),
-            ("Enable Protagonist Plot Armor Auto-Selection", ("automation", "enable_protagonist_plot_armor")),
-            ("Enable Board Unit Detection (HSV + Portrait + OCR)", ("automation", "enable_board_unit_detection")),
-            ("Enable Equipment Drag-and-Drop Crafting & Multi-Carry Routing", ("automation", "enable_equipment_crafting")),
-            ("Enable Escapade / Node Card Selector", ("automation", "enable_escapade_handler")),
-            ("Enable Live Transparent Board Overlay HUD", ("automation", "enable_live_overlay")),
-            ("Require Prep HUD before acting (recommended safety)", ("automation", "require_prep_ui")),
-            ("Advance unknown screens with Next (risky)", ("automation", "advance_on_unknown")),
-            ("Dry Run Mode (Log actions without moving mouse)", ("automation", "dry_run")),
+        # Grouped automation toggles. The config keys (paths) are unchanged, so
+        # saving/loading works exactly as before - only the visual layout changes.
+        groups = [
+            ("Shop & Economy", [
+                ("Enable Shop Auto-Buy", ("automation", "enable_shop_auto_buy")),
+                ("Enable Shop XP Leveling", ("automation", "enable_auto_xp_leveling")),
+                ("Enable Escapade Card Selector", ("automation", "enable_escapade_handler")),
+            ]),
+            ("Deployment & Combat", [
+                ("Enable Bench-to-Board Deploy & Swap", ("automation", "enable_bench_deployment")),
+                ("Enable Protagonist Plot Armor", ("automation", "enable_protagonist_plot_armor")),
+                ("Enable Board Unit Detection", ("automation", "enable_board_unit_detection")),
+                ("Enable Equipment Crafting & Routing", ("automation", "enable_equipment_crafting")),
+                ("Enable Live Overlay HUD", ("automation", "enable_live_overlay")),
+            ]),
+            ("Safety & Debug", [
+                ("Require Prep HUD before acting", ("automation", "require_prep_ui")),
+                ("Advance unknown screens with Next (risky)", ("automation", "advance_on_unknown")),
+                ("Dry Run Mode (log only, no real clicks)", ("automation", "dry_run")),
+            ]),
         ]
-        for idx, (label, path) in enumerate(toggles, start=2):
-            v = tk.BooleanVar()
-            ttk.Checkbutton(fr, text=label, variable=v).grid(row=idx, column=0, columnspan=2, sticky="w", padx=8, pady=3)
-            self.vars[path] = v
+
+        for gi, (title, toggles) in enumerate(groups):
+            lf = ttk.LabelFrame(fr, text=title, padding=8)
+            lf.grid(row=2, column=gi, sticky="nsew", padx=6, pady=6)
+            fr.columnconfigure(gi, weight=1)
+            for (label, path) in toggles:
+                v = tk.BooleanVar()
+                ttk.Checkbutton(lf, text=label, variable=v).pack(anchor="w", pady=2, padx=2)
+                self.vars[path] = v
 
         btn_row = ttk.Frame(fr)
-        btn_row.grid(row=len(toggles) + 2, column=0, columnspan=2, sticky="w", padx=8, pady=12)
+        btn_row.grid(row=3, column=0, columnspan=3, sticky="w", padx=8, pady=10)
         ttk.Button(btn_row, text="Scan Board Now", command=self._test_board_scan).pack(side="left", padx=4)
         ttk.Button(btn_row, text="Capture Portraits", command=self._capture_unit_portraits).pack(side="left", padx=4)
         ttk.Button(btn_row, text="Diagnostics", command=self._run_self_test_from_ui).pack(side="left", padx=4)
@@ -1810,6 +1850,9 @@ class CurrencyWarsApp:
         self.start_btn.config(state="disabled")
         if self.config.get("automation", {}).get("enable_live_overlay", True):
             self.overlay.show()
+        dry_run = bool(self.config.get("automation", {}).get("dry_run", False))
+        mode = "DRY-RUN" if dry_run else "LIVE"
+        self._set_status(f"RUNNING ({mode})", "#22C55E" if dry_run else "#EF4444")
         threading.Thread(target=self._automation_loop, daemon=True).start()
 
     # -- state machine -----------------------------------------------------
@@ -1949,6 +1992,7 @@ class CurrencyWarsApp:
             self._battle_started_at = 0.0
             if not self.headless:
                 self._post_ui(lambda: self.start_btn.config(state="normal"))
+                self._post_ui(lambda: self._set_status("Stopped"))
             self.log("=== Automation Loop Stopped ===")
 
     def _start_ui_tick(self):
