@@ -91,7 +91,7 @@
       "item_id": "anti_grav_boots",
       "name": "Anti-Grav Boots",
       "components": ["Roller Skates", "Roller Skates"],
-      "priority_archetypes": ["combo_aglaea", "beast_garden_chimeras"]
+      "priority_archetypes": ["combo_aglaea", "beast_garden_chimeras", "aha_elation_snowball"]
     },
     {
       "item_id": "charging_sail",
@@ -109,13 +109,13 @@
       "item_id": "weapon_master",
       "name": "Weapon Master",
       "components": ["Aether Drill", "Starlight Blade"],
-      "priority_archetypes": ["aoe_acheron", "combo_aglaea"]
+      "priority_archetypes": ["aoe_acheron", "combo_aglaea", "aha_elation_snowball"]
     },
     {
       "item_id": "bloodthirsty",
       "name": "Bloodthirsty",
       "components": ["Starlight Blade", "Vitality Core"],
-      "priority_archetypes": ["combo_aglaea", "astropolis_merchant"]
+      "priority_archetypes": ["combo_aglaea", "astropolis_merchant", "beast_garden_chimeras"]
     },
     {
       "item_id": "high_frequency_chainsaw",
@@ -128,6 +128,12 @@
       "name": "Wealth Gem",
       "components": ["Gilded Coin", "Gilded Coin"],
       "priority_archetypes": ["astropolis_merchant", "aha_elation_snowball"]
+    },
+    {
+      "item_id": "meteor_wing",
+      "name": "Meteor Wing",
+      "components": ["Starlight Blade", "Roller Skates"],
+      "priority_archetypes": ["beast_garden_chimeras", "aha_elation_snowball"]
     }
   ],
   "strategies": [
@@ -200,6 +206,72 @@
         { "unit": "Aventurine", "role": "sustain_shielder",     "rarity": "Gold", "zone": "off_field", "slot_index": 4, "screen_xy": [605,  665], "priority_items": [] }
       ],
       "bonds": ["Astropolis", "Coin"]
+    },
+    {
+      "id": "aha_elation_snowball",
+      "name": "Aha! Elation Snowball (Dr. Ratio)",
+      "tier": "S",
+      "protagonist_slot_unit": "Dr. Ratio",
+      "plot_armor_priority": ["Dr. Ratio", "Ruan Mei", "Robin"],
+      "escapade_keywords": ["Elation", "Follow-up", "SPD", "Snowball", "Crit"],
+      "refresh_thresholds": {
+        "early_carry_hold_level": 6,
+        "primary_roll_level": 7,
+        "min_gold_before_roll": 30,
+        "all_in_hp_threshold": 30
+      },
+      "unit_positioning": [
+        { "unit": "Dr. Ratio", "role": "main_carry",            "rarity": "Gold",   "zone": "on_field",  "slot_index": 0, "screen_xy": [725,  405], "priority_items": ["High-frequency Chainsaw", "Weapon Master"] },
+        { "unit": "Ruan Mei",  "role": "elation_buffer",       "rarity": "Gold",   "zone": "on_field",  "slot_index": 1, "screen_xy": [880,  405], "priority_items": ["Wealth Gem"] },
+        { "unit": "Robin",     "role": "team_wide_buffer",     "rarity": "Gold",   "zone": "on_field",  "slot_index": 2, "screen_xy": [1035, 405], "priority_items": [] },
+        { "unit": "Boothill",  "role": "secondary_single_target","rarity": "Purple","zone": "on_field",  "slot_index": 3, "screen_xy": [1190, 405], "priority_items": ["Anti-Grav Boots"] },
+        { "unit": "Silver Wolf", "role": "debuff_implant",     "rarity": "Gold",   "zone": "off_field", "slot_index": 4, "screen_xy": [605,  665], "priority_items": [] }
+      ],
+      "bonds": ["Elation", "Follow-up", "Debuff"]
+    },
+    {
+      "id": "beast_garden_chimeras",
+      "name": "Beast Garden Chimeras (Castorice + Mydei)",
+      "tier": "S",
+      "protagonist_slot_unit": "Castorice",
+      "plot_armor_priority": ["Castorice", "Mydei", "Phainon"],
+      "escapade_keywords": ["HP", "Beast", "Sacrifice", "Revival", "Garden"],
+      "refresh_thresholds": {
+        "early_carry_hold_level": 6,
+        "primary_roll_level": 8,
+        "min_gold_before_roll": 30,
+        "all_in_hp_threshold": 30
+      },
+      "unit_positioning": [
+        { "unit": "Castorice",                   "role": "main_carry_hp_scaling",  "rarity": "Gold",   "zone": "on_field",  "slot_index": 0, "screen_xy": [725,  405], "priority_items": ["Bloodthirsty", "Meteor Wing"] },
+        { "unit": "Mydei",                       "role": "secondary_carry_hp_tank","rarity": "Gold",   "zone": "on_field",  "slot_index": 1, "screen_xy": [880,  405], "priority_items": ["Anti-Grav Boots"] },
+        { "unit": "Phainon",                     "role": "beast_synergy_enabler",  "rarity": "Gold",   "zone": "on_field",  "slot_index": 2, "screen_xy": [1035, 405], "priority_items": [] },
+        { "unit": "Blade",                       "role": "hp_economy_sub_dps",    "rarity": "Purple", "zone": "on_field",  "slot_index": 3, "screen_xy": [1190, 405], "priority_items": [] },
+        { "unit": "CastoriceGossamerFlutter",     "role": "off_field_beast",       "rarity": "Gold",   "zone": "off_field", "slot_index": 4, "screen_xy": [605,  665], "priority_items": [] }
+      ],
+      "bonds": ["Beast Garden", "HP Sacrifice", "Revival"]
+    },
+    {
+      "id": "aoe_acheron",
+      "name": "AOE Acheron (Budget)",
+      "tier": "A",
+      "protagonist_slot_unit": "Acheron",
+      "plot_armor_priority": ["Acheron", "Pela", "Guinaifen"],
+      "escapade_keywords": ["AOE", "Debuff", "Ultimate", "Nihility", "Stack"],
+      "refresh_thresholds": {
+        "early_carry_hold_level": 5,
+        "primary_roll_level": 7,
+        "min_gold_before_roll": 20,
+        "all_in_hp_threshold": 35
+      },
+      "unit_positioning": [
+        { "unit": "Acheron",   "role": "main_carry_ultimate", "rarity": "Gold",   "zone": "on_field",  "slot_index": 0, "screen_xy": [725,  405], "priority_items": ["Charging Sail", "Perpetual Engine"] },
+        { "unit": "Pela",      "role": "aoe_debuffer",       "rarity": "Blue",   "zone": "on_field",  "slot_index": 1, "screen_xy": [880,  405], "priority_items": [] },
+        { "unit": "Guinaifen", "role": "fire_breaker",       "rarity": "Blue",   "zone": "on_field",  "slot_index": 2, "screen_xy": [1035, 405], "priority_items": [] },
+        { "unit": "Gallagher", "role": "budget_sustain",      "rarity": "Blue",   "zone": "on_field",  "slot_index": 3, "screen_xy": [1190, 405], "priority_items": [] },
+        { "unit": "Kafka",     "role": "off_field_det",       "rarity": "Gold",   "zone": "off_field", "slot_index": 4, "screen_xy": [605,  665], "priority_items": [] }
+      ],
+      "bonds": ["Nihility", "AOE", "Debuff Stack"]
     }
   ]
 }

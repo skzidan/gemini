@@ -12,21 +12,44 @@ OpenCV + Tesseract, decides what to do, and sends clicks with `PostMessage`.
 
 ---
 
-## Quick start
+## Quick start (Windows)
 
 ```bat
+REM 1. Install Python dependencies
 python -m pip install -r requirements.txt
+
+REM 2. Verify environment
 python currency_wars_app-v9.py --self-test
-rem then start the GUI:
-python currency_wars_app-v9.py
+
+REM 3. See the full first-run checklist (required before the bot can work):
+REM    type SETUP_CHECKLIST.md or open it in a text editor.
 ```
 
-Tesseract is not a pip package. Install the Windows build and put
-`tesseract.exe` on `PATH`.
+### What you need on your machine
 
-`--self-test` prints a PASS/FAIL report for the environment, config JSON,
-strategy JSON, scene templates, unit templates and item verification. Exit code
-is `0` on pass.
+| Dependency | How to get it |
+|---|---|
+| Python 3.10+ | [python.org](https://www.python.org/downloads/) |
+| Tesseract OCR | [UB-Mannheim installer](https://github.com/UB-Mannheim/tesseract/wiki) (check English during install) |
+| Game in windowed 1920x1080 | In-game settings → Graphics → Windowed, 1920x1080 |
+
+### After running `--self-test`
+
+The self-test will report **missing scene templates** — that is expected.
+Follow the **9-step checklist** (`SETUP_CHECKLIST.md`) to:
+
+1. Capture `victory.png`, `reward.png`, and `battle_start.png` from your game
+2. Calibrate HUD ROIs (Gold / Level / HP coordinates)
+3. Verify unit portraits match your UI language/scale
+4. (Optional) Add verified item icons for crafting
+5. Run a dry-run test before going live
+
+```bat
+REM Quick-reference: capture the three scene templates
+python currency_wars_app-v9.py --capture-scene victory --scene-roi 820,300,1100,360
+python currency_wars_app-v9.py --capture-scene reward  --scene-roi 820,300,1100,360
+python currency_wars_app-v9.py --capture-scene battle_start --scene-roi 820,300,1100,360
+```
 
 ---
 
@@ -68,6 +91,9 @@ game, at **your** window size.
    `unit_registry.json` -> `items.verified`.
 6. Run `--self-test` again. Missing scenes are the only hard blocker.
 
+> **Full walkthrough:** See [`SETUP_CHECKLIST.md`](SETUP_CHECKLIST.md) for a
+> complete 9-step guide with screenshots.
+
 ## Safety model
 
 | Guard | Behaviour |
@@ -104,9 +130,21 @@ extra arguments (`run_background.bat --dry-run --max-seconds 600`).
 | `config.json` | Runtime settings. Saved atomically by the GUI. |
 | `hsr_currency_wars_v4_7_strategies-v4.json` | Strategies, screen ROIs, thresholds, recipes. |
 | `calibrate_currency_wars_1080p.py` | Drag-and-drop ROI calibrator for the HUD and buttons. |
+| `SETUP_CHECKLIST.md` | 9-step guide from clone to first dry-run. |
 | `templates/units`, `templates/items`, `templates/scenes` | Template images. |
 | `captures/`, `review/`, `automation.log` | Output, rotated at 2 MB x3. |
 | `tests/` | `python -m unittest discover -s tests -v` |
+
+## Available strategies
+
+| Strategy | Tier | Core units |
+|---|---|---|
+| Combo Aglaea | S | Aglaea, Sunday, Anaxa |
+| Ultimate Spam Hysilens (Girls Band) | S | Hysilens, Cyrene, Serval |
+| Astropolis Merchant Guild (Jade) | S | Jade, Topaz, Aventurine |
+| Aha! Elation Snowball (Dr. Ratio) | S | Dr. Ratio, Ruan Mei, Robin |
+| Beast Garden Chimeras (Castorice + Mydei) | S | Castorice, Mydei, Phainon |
+| AOE Acheron (Budget) | A | Acheron, Pela, Guinaifen |
 
 ## How the loop decides
 
