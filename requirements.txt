@@ -1,0 +1,15 @@
+# Runtime dependencies for the HSR Currency Wars automation.
+# Install with:  python -m pip install -r requirements.txt
+#
+# Tesseract is NOT a pip package. Install the Windows build separately and make
+# sure `tesseract.exe` is on PATH (or set pytesseract.pytesseract.tesseract_cmd).
+
+opencv-python>=4.8
+numpy>=1.24
+pywin32>=306
+keyboard>=0.13.5
+pytesseract>=0.3.10
+wgc-python>=2.1
+
+# Development only
+# pyinstaller>=6.0

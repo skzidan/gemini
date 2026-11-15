@@ -1,0 +1,205 @@
+{
+  "meta": {
+    "game": "Honkai: Star Rail",
+    "mode": "Currency Wars: Voyage Into the Canvas",
+    "version": "4.7",
+    "season": 2,
+    "schema_version": "4.0",
+    "target_resolution": "1920x1080"
+  },
+  "_calibration_notes": "Perfectly mapped 1080p. Board slots widened to capture full card. OCR uses dynamic Otsu thresholding.",
+  "screen_coordinates_1080p": {
+    "resolution": {
+      "width": 1920,
+      "height": 1080,
+      "aspect_ratio": "16:9",
+      "coordinate_origin": "top_left"
+    },
+    "ui_controls": {
+      "shop_refresh_button": { "x": 1620, "y": 870, "ocr_roi": [1580, 840, 1660, 900] },
+      "buy_xp_level_up_button": { "x": 270, "y": 920, "ocr_roi": [220, 880, 320, 960] },
+      "lock_shop_toggle": { "x": 1765, "y": 845 },
+      "gold_counter_ocr_roi": [1490, 890, 1530, 920],
+      "squad_level_ocr_roi": [235, 890, 270, 920],
+      "squad_hp_ocr_roi": [1400, 30, 1480, 80],
+      "protagonist_plot_armor_slot": {
+        "x": 100,
+        "y": 160,
+        "ocr_roi": [60, 110, 140, 210]
+      },
+      "escapade_choices": [
+        { "index": 0, "x": 520,  "y": 540, "ocr_roi": [380,  360, 660,  720] },
+        { "index": 1, "x": 960,  "y": 540, "ocr_roi": [820,  360, 1100, 720] },
+        { "index": 2, "x": 1400, "y": 540, "ocr_roi": [1260, 360, 1540, 720] }
+      ]
+    },
+    "shop_card_slots": [
+      { "shop_index": 0, "click": { "x": 430, "y": 900 }, "name_ocr_roi": [380, 850, 480, 950], "cost_ocr_roi": [460, 845, 485, 865] },
+      { "shop_index": 1, "click": { "x": 545, "y": 900 }, "name_ocr_roi": [495, 850, 595, 950], "cost_ocr_roi": [575, 845, 600, 865] },
+      { "shop_index": 2, "click": { "x": 660, "y": 900 }, "name_ocr_roi": [610, 850, 710, 950], "cost_ocr_roi": [690, 845, 715, 865] },
+      { "shop_index": 3, "click": { "x": 775, "y": 900 }, "name_ocr_roi": [725, 850, 825, 950], "cost_ocr_roi": [805, 845, 830, 865] },
+      { "shop_index": 4, "click": { "x": 890, "y": 900 }, "name_ocr_roi": [840, 850, 940, 950], "cost_ocr_roi": [920, 845, 945, 865] }
+    ],
+    "unit_board_slots": {
+      "on_field": [
+        { "slot_index": 0, "zone": "on_field", "label": "Frontline_1", "x": 725, "y": 405, "ocr_roi": [680, 340, 770, 470] },
+        { "slot_index": 1, "zone": "on_field", "label": "Frontline_2", "x": 880, "y": 405, "ocr_roi": [835, 340, 925, 470] },
+        { "slot_index": 2, "zone": "on_field", "label": "Frontline_3", "x": 1035, "y": 405, "ocr_roi": [990, 340, 1080, 470] },
+        { "slot_index": 3, "zone": "on_field", "label": "Frontline_4", "x": 1190, "y": 405, "ocr_roi": [1145, 340, 1235, 470] }
+      ],
+      "off_field": [
+        { "slot_index": 4, "zone": "off_field", "label": "OffField_1", "x": 605, "y": 665, "ocr_roi": [560, 600, 650, 730] },
+        { "slot_index": 5, "zone": "off_field", "label": "OffField_2", "x": 755, "y": 665, "ocr_roi": [710, 600, 800, 730] },
+        { "slot_index": 6, "zone": "off_field", "label": "OffField_3", "x": 905, "y": 665, "ocr_roi": [860, 600, 950, 730] },
+        { "slot_index": 7, "zone": "off_field", "label": "OffField_4", "x": 1055, "y": 665, "ocr_roi": [1010, 600, 1100, 730] },
+        { "slot_index": 8, "zone": "off_field", "label": "OffField_5", "x": 1205, "y": 665, "ocr_roi": [1160, 600, 1250, 730] },
+        { "slot_index": 9, "zone": "off_field", "label": "OffField_6", "x": 1355, "y": 665, "ocr_roi": [1310, 600, 1400, 730] }
+      ]
+    },
+    "bench_reserve_slots": [
+      { "bench_index": 0, "x": 345, "y": 885, "ocr_roi": [300, 820, 390, 950] },
+      { "bench_index": 1, "x": 475, "y": 885, "ocr_roi": [430, 820, 520, 950] },
+      { "bench_index": 2, "x": 605, "y": 885, "ocr_roi": [560, 820, 650, 950] },
+      { "bench_index": 3, "x": 735, "y": 885, "ocr_roi": [690, 820, 780, 950] },
+      { "bench_index": 4, "x": 865, "y": 885, "ocr_roi": [820, 820, 910, 950] },
+      { "bench_index": 5, "x": 995, "y": 885, "ocr_roi": [950, 820, 1040, 950] },
+      { "bench_index": 6, "x": 1125, "y": 885, "ocr_roi": [1080, 820, 1170, 950] },
+      { "bench_index": 7, "x": 1255, "y": 885, "ocr_roi": [1210, 820, 1300, 950] },
+      { "bench_index": 8, "x": 1385, "y": 885, "ocr_roi": [1340, 820, 1430, 950] }
+    ],
+    "equipment_inventory_slots": [
+      { "item_slot": 0, "x": 1760, "y": 290 },
+      { "item_slot": 1, "x": 1835, "y": 290 },
+      { "item_slot": 2, "x": 1760, "y": 365 },
+      { "item_slot": 3, "x": 1835, "y": 365 },
+      { "item_slot": 4, "x": 1760, "y": 440 },
+      { "item_slot": 5, "x": 1835, "y": 440 },
+      { "item_slot": 6, "x": 1760, "y": 515 },
+      { "item_slot": 7, "x": 1835, "y": 515 }
+    ]
+  },
+  "economy_and_refresh_thresholds": {
+    "interest_cap_gold": 30,
+    "interest_step_gold": 10,
+    "base_reroll_cost": 2,
+    "xp_purchase_cost": 4,
+    "protagonist_bond_pity_refreshes": 2,
+    "fast_push_gold_reserve": 50
+  },
+  "crafting_recipes": [
+    {
+      "item_id": "anti_grav_boots",
+      "name": "Anti-Grav Boots",
+      "components": ["Roller Skates", "Roller Skates"],
+      "priority_archetypes": ["combo_aglaea", "beast_garden_chimeras"]
+    },
+    {
+      "item_id": "charging_sail",
+      "name": "Charging Sail",
+      "components": ["Photon Cell", "Aether Drill"],
+      "priority_archetypes": ["ultimate_spam_hysilens", "aoe_acheron"]
+    },
+    {
+      "item_id": "perpetual_engine",
+      "name": "Perpetual Engine",
+      "components": ["Photon Cell", "Photon Cell"],
+      "priority_archetypes": ["ultimate_spam_hysilens", "aoe_acheron"]
+    },
+    {
+      "item_id": "weapon_master",
+      "name": "Weapon Master",
+      "components": ["Aether Drill", "Starlight Blade"],
+      "priority_archetypes": ["aoe_acheron", "combo_aglaea"]
+    },
+    {
+      "item_id": "bloodthirsty",
+      "name": "Bloodthirsty",
+      "components": ["Starlight Blade", "Vitality Core"],
+      "priority_archetypes": ["combo_aglaea", "astropolis_merchant"]
+    },
+    {
+      "item_id": "high_frequency_chainsaw",
+      "name": "High-frequency Chainsaw",
+      "components": ["Aether Drill", "Roller Skates"],
+      "priority_archetypes": ["ultimate_spam_hysilens", "aha_elation_snowball"]
+    },
+    {
+      "item_id": "wealth_gem",
+      "name": "Wealth Gem",
+      "components": ["Gilded Coin", "Gilded Coin"],
+      "priority_archetypes": ["astropolis_merchant", "aha_elation_snowball"]
+    }
+  ],
+  "strategies": [
+    {
+      "id": "combo_aglaea",
+      "name": "Combo Aglaea",
+      "tier": "S",
+      "protagonist_slot_unit": "Aglaea",
+      "plot_armor_priority": ["Aglaea", "Anaxa", "Sunday"],
+      "escapade_keywords": ["SPD", "Combo", "Boots", "Gold", "Economy"],
+      "refresh_thresholds": {
+        "early_carry_hold_level": 6,
+        "primary_roll_level": 8,
+        "min_gold_before_roll": 30,
+        "all_in_hp_threshold": 30
+      },
+      "unit_positioning": [
+        { "unit": "Aglaea",  "role": "main_carry",             "rarity": "Gold",   "zone": "on_field",  "slot_index": 0, "screen_xy": [725,  405], "priority_items": ["Anti-Grav Boots", "Bloodthirsty"] },
+        { "unit": "Sunday",  "role": "action_advance_support", "rarity": "Gold",   "zone": "on_field",  "slot_index": 1, "screen_xy": [880,  405], "priority_items": ["Charging Sail", "Perpetual Engine"] },
+        { "unit": "Anaxa",   "role": "early_transition_carry", "rarity": "Purple", "zone": "on_field",  "slot_index": 2, "screen_xy": [1035, 405], "priority_items": ["Weapon Master"] },
+        { "unit": "Huohuo",  "role": "sustain_energy_battery", "rarity": "Purple", "zone": "on_field",  "slot_index": 3, "screen_xy": [1190, 405], "priority_items": [] },
+        { "unit": "Jingliu", "role": "off_field_synergy",      "rarity": "Gold",   "zone": "off_field", "slot_index": 4, "screen_xy": [605,  665], "priority_items": [] }
+      ],
+      "bonds": ["Combo", "Energy"],
+      "skills": [
+        { "name": "Aglaea_Ultimate", "x": 1500, "y": 800, "ocr_roi": [1450, 750, 1550, 850] },
+        { "name": "Sunday_Skill", "x": 1600, "y": 800, "ocr_roi": [1550, 750, 1650, 850] }
+      ]
+    },
+    {
+      "id": "ultimate_spam_hysilens",
+      "name": "Ultimate Spam Hysilens (Girls Band)",
+      "tier": "S",
+      "protagonist_slot_unit": "Hysilens",
+      "plot_armor_priority": ["Hysilens", "Cyrene", "Serval"],
+      "escapade_keywords": ["Energy", "Ultimate", "DoT", "Photon", "4-Girls"],
+      "refresh_thresholds": {
+        "early_carry_hold_level": 6,
+        "primary_roll_level": 7,
+        "min_gold_before_roll": 30,
+        "all_in_hp_threshold": 35
+      },
+      "unit_positioning": [
+        { "unit": "Hysilens", "role": "main_carry",              "rarity": "Gold", "zone": "on_field",  "slot_index": 0, "screen_xy": [725,  405], "priority_items": ["Charging Sail", "Perpetual Engine"] },
+        { "unit": "Cyrene",   "role": "detonator_buffer",        "rarity": "Gold", "zone": "on_field",  "slot_index": 1, "screen_xy": [880,  405], "priority_items": ["High-frequency Chainsaw", "Anti-Grav Boots"] },
+        { "unit": "Serval",   "role": "dot_lucky_strike_enabler","rarity": "Blue", "zone": "on_field",  "slot_index": 2, "screen_xy": [1035, 405], "priority_items": [] },
+        { "unit": "Hyacine",  "role": "sustain",                 "rarity": "Gold", "zone": "on_field",  "slot_index": 3, "screen_xy": [1190, 405], "priority_items": [] },
+        { "unit": "Kafka",    "role": "off_field_dot_trigger",   "rarity": "Gold", "zone": "off_field", "slot_index": 4, "screen_xy": [605,  665], "priority_items": [] }
+      ],
+      "bonds": ["4-Girls Band", "Beast Garden", "DoT"]
+    },
+    {
+      "id": "astropolis_merchant",
+      "name": "Astropolis Merchant Guild (Jade)",
+      "tier": "S",
+      "protagonist_slot_unit": "Jade",
+      "plot_armor_priority": ["Jade", "Topaz", "Aventurine"],
+      "escapade_keywords": ["Astropolis", "Coin", "Gold", "Merchant", "Interest"],
+      "refresh_thresholds": {
+        "early_carry_hold_level": 6,
+        "primary_roll_level": 8,
+        "min_gold_before_roll": 30,
+        "all_in_hp_threshold": 30
+      },
+      "unit_positioning": [
+        { "unit": "Jade",       "role": "main_carry",           "rarity": "Gold", "zone": "on_field",  "slot_index": 0, "screen_xy": [725,  405], "priority_items": ["Wealth Gem"] },
+        { "unit": "Topaz",      "role": "follow_up_dps",        "rarity": "Gold", "zone": "on_field",  "slot_index": 1, "screen_xy": [880,  405], "priority_items": [] },
+        { "unit": "Feixiao",    "role": "single_target_burst",  "rarity": "Gold", "zone": "on_field",  "slot_index": 2, "screen_xy": [1035, 405], "priority_items": [] },
+        { "unit": "Robin",      "role": "team_buffer",          "rarity": "Gold", "zone": "on_field",  "slot_index": 3, "screen_xy": [1190, 405], "priority_items": [] },
+        { "unit": "Aventurine", "role": "sustain_shielder",     "rarity": "Gold", "zone": "off_field", "slot_index": 4, "screen_xy": [605,  665], "priority_items": [] }
+      ],
+      "bonds": ["Astropolis", "Coin"]
+    }
+  ]
+}

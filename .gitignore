@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Build output
+build/
+dist/
+*.spec
+!CurrencyWarsAutomation.spec
+
+# Runtime output (the bot writes these)
+automation.log
+automation.log.*
+crash.log
+self_test_report.txt
+captures/
+review/
+debug_frame.png
+debug_crops/
+templates/scenes/*.png
+templates/units/slot*_capture.png
+templates/items/slot*_capture.png
+
+# Local overrides
+config.local.json

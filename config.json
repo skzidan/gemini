@@ -1,0 +1,97 @@
+{
+  "game_mode": "pc_client",
+  "window_title": "Honkai: Star Rail",
+  "strategy_json_path": "hsr_currency_wars_v4_7_strategies-v4.json",
+  "name_registry_path": "unit_registry.json",
+  "active_strategy_id": "ultimate_spam_hysilens",
+  "resolution": {
+    "width": 1920,
+    "height": 1080
+  },
+  "game_offset": {
+    "x": 0,
+    "y": 0
+  },
+  "scenes": {
+    "victory": "scenes/victory.png",
+    "reward": "scenes/reward.png",
+    "battle_start": "scenes/battle_start.png"
+  },
+  "template_ignore": {
+    "units": [],
+    "items": []
+  },
+  "vision": {
+    "min_edges": 900
+  },
+  "automation": {
+    "enable_auto_battle": true,
+    "battle_timeout_seconds": 180,
+    "max_runs": 0,
+    "delay_between_runs_seconds": 2.5,
+    "dry_run": true,
+    "enable_shop_auto_buy": true,
+    "enable_auto_xp_leveling": true,
+    "enable_bench_deployment": true,
+    "enable_protagonist_plot_armor": true,
+    "enable_equipment_crafting": true,
+    "enable_board_unit_detection": true,
+    "enable_escapade_handler": true,
+    "enable_live_overlay": true,
+    "require_prep_ui": true,
+    "advance_on_unknown": false,
+    "wait_for_window_seconds": 0
+  },
+  "safety": {
+    "pause_key": "f10",
+    "stop_key": "f12",
+    "emergency_stop_on_error": true
+  },
+  "paths": {
+    "templates": "./templates"
+  },
+  "clicks": {
+    "start_battle": {
+      "x": 960,
+      "y": 930
+    },
+    "confirm": {
+      "x": 960,
+      "y": 600
+    },
+    "cancel": {
+      "x": 700,
+      "y": 600
+    },
+    "auto_battle": {
+      "x": 1700,
+      "y": 900
+    },
+    "skill_1": {
+      "x": 400,
+      "y": 950
+    },
+    "skill_2": {
+      "x": 550,
+      "y": 950
+    },
+    "skill_3": {
+      "x": 700,
+      "y": 950
+    },
+    "ultimate": {
+      "x": 1500,
+      "y": 950
+    },
+    "next": {
+      "x": 1600,
+      "y": 900
+    },
+    "collect": {
+      "x": 960,
+      "y": 500
+    }
+  },
+  "multi_carry_routing_overrides": {},
+  "game_path": "F:\\HoYoPlay\\games\\Star Rail Games\\StarRail.exe"
+}

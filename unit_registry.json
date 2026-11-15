@@ -1,0 +1,65 @@
+{
+  "_readme": [
+    "Name registry: maps display names (strategy JSON, OCR output) to template file stems.",
+    "Only template stems that actually exist in templates/units or templates/items are matched.",
+    "items.verified is a safety allow-list: equipment crafting only drags items listed there,",
+    "because templates/items was populated by download scripts that could not verify item IDs",
+    "and contains placeholder icons. Capture a real in-game item icon into templates/items,",
+    "verify it visually, then add its slug here."
+  ],
+  "units": {
+    "aliases": {
+      "Topaz": "TopazandNumby",
+      "Topaz and Numby": "TopazandNumby",
+      "March 7th": "March7th",
+      "Dan Heng": "DanHeng",
+      "Dan Heng - Imbibitor Lunae": "DanHengImbibitorLunae",
+      "Imbibitor Lunae": "DanHengImbibitorLunae",
+      "Ruan Mei": "RuanMei",
+      "Silver Wolf": "SilverWolf",
+      "Fu Xuan": "FuXuan",
+      "Dr. Ratio": "DrRatio",
+      "Jing Yuan": "JingYuan",
+      "Black Swan": "BlackSwan",
+      "The Herta": "TheHerta",
+      "Trailblazer (Destruction)": "StelleDestruction",
+      "Trailblazer (Preservation)": "StellePreservation",
+      "Trailblazer (Elation)": "StelleElation",
+      "Trailblazer (Imaginary)": "StelleImaginary",
+      "Trailblazer (Remembrance)": "StelleRemembrance"
+    },
+    "ignored_units": [
+      "slot0_capture",
+      "slot1_capture",
+      "slot2_capture",
+      "slot3_capture",
+      "slot4_capture",
+      "slot5_capture",
+      "slot6_capture",
+      "slot7_capture",
+      "slot8_capture",
+      "slot9_capture"
+    ]
+  },
+  "items": {
+    "aliases": {
+      "Charging Sail": "energy_sail",
+      "High-frequency Chainsaw": "chainsaw",
+      "Weapon Master": "weapon_master"
+    },
+    "ignored": [
+      "e1",
+      "e2",
+      "e3",
+      "e4",
+      "e5",
+      "e6",
+      "e7",
+      "aglaea3",
+      "seele3",
+      "projector2",
+      "wrench2"
+    ],
+    "verified": ["Aether Drill","Anti-Grav Boots","Bloodthirsty","Gilded Coin","Perpetual Engine","Photon Cell","Roller Skates","Starlight Blade","Vitality Core","Wealth Gem"]
+  }
+}

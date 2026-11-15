@@ -1,0 +1,91 @@
+[19:18:48] Tesseract OCR ready (version 5.5.3.20260724)
+[19:18:48] WGC capture engine verified.
+[19:18:48] [Scenes] The loop cannot advance past prep without these. Capture one per screen with:
+[19:18:48]   python currency_wars_app-v9.py --capture-scene victory --scene-roi x1,y1,x2,y2
+[19:18:48]   python currency_wars_app-v9.py --capture-scene reward --scene-roi x1,y1,x2,y2
+[19:18:48]   python currency_wars_app-v9.py --capture-scene battle_start --scene-roi x1,y1,x2,y2
+[19:18:48] [Craft] Item templates not mapped (crafting will ignore these until you add aliases + verified entries in unit_registry.json): Aether Drill, Anti-Grav Boots, Bloodthirsty, Gilded Coin, Perpetual Engine, Photon Cell, Roller Skates, Starlight Blade, Vitality Core, Wealth Gem
+[19:18:48] [Templates] Preloaded 148 templates.
+[19:18:48] [Startup] Found game window HWND: 394846
+[19:18:48] [Startup][WARN] Not running as Administrator - global F10/F12 hotkeys and clicks may not fire.
+[19:18:48] [Startup][WARN] Missing scene templates: victory, reward, battle_start
+[19:18:48] Strategy JSON: hsr_currency_wars_v4_7_strategies-v4.json (3 strategies loaded)
+[19:18:48] [Capture] Using window 'Honkai: Star Rail' (UnityWndClass)
+[19:18:48] [Capture] Frame 1906x1072 rescaled to 1920x1080 (clicks scaled by 0.9927, 0.9926). Set the game to exactly 1920x1080 windowed for best accuracy.
+[19:21:53] Tesseract OCR ready (version 5.5.3.20260724)
+[19:21:53] WGC capture engine verified.
+[19:21:53] [Scenes] The loop cannot advance past prep without these. Capture one per screen with:
+[19:21:53]   python currency_wars_app-v9.py --capture-scene victory --scene-roi x1,y1,x2,y2
+[19:21:53]   python currency_wars_app-v9.py --capture-scene reward --scene-roi x1,y1,x2,y2
+[19:21:53]   python currency_wars_app-v9.py --capture-scene battle_start --scene-roi x1,y1,x2,y2
+[19:21:53] [Craft] Item templates not mapped (crafting will ignore these until you add aliases + verified entries in unit_registry.json): Aether Drill, Anti-Grav Boots, Bloodthirsty, Gilded Coin, Perpetual Engine, Photon Cell, Roller Skates, Starlight Blade, Vitality Core, Wealth Gem
+[19:21:53] [Templates] Preloaded 148 templates.
+[19:21:53] [Startup] Found game window HWND: 394846
+[19:21:53] [Startup][WARN] Not running as Administrator - global F10/F12 hotkeys and clicks may not fire.
+[19:21:53] [Startup][WARN] Missing scene templates: victory, reward, battle_start
+[19:21:53] Strategy JSON: hsr_currency_wars_v4_7_strategies-v4.json (3 strategies loaded)
+[19:21:55] Tesseract OCR ready (version 5.5.3.20260724)
+[19:21:55] WGC capture engine verified.
+[19:21:55] [Scenes] The loop cannot advance past prep without these. Capture one per screen with:
+[19:21:55]   python currency_wars_app-v9.py --capture-scene victory --scene-roi x1,y1,x2,y2
+[19:21:55]   python currency_wars_app-v9.py --capture-scene reward --scene-roi x1,y1,x2,y2
+[19:21:55]   python currency_wars_app-v9.py --capture-scene battle_start --scene-roi x1,y1,x2,y2
+[19:21:55] [Craft] Item templates not mapped (crafting will ignore these until you add aliases + verified entries in unit_registry.json): Aether Drill, Anti-Grav Boots, Bloodthirsty, Gilded Coin, Perpetual Engine, Photon Cell, Roller Skates, Starlight Blade, Vitality Core, Wealth Gem
+[19:21:55] [Templates] Preloaded 148 templates.
+[19:21:55] [Startup] Found game window HWND: 394846
+[19:21:55] [Startup][WARN] Not running as Administrator - global F10/F12 hotkeys and clicks may not fire.
+[19:21:55] [Startup][WARN] Missing scene templates: victory, reward, battle_start
+[19:21:55] Strategy JSON: hsr_currency_wars_v4_7_strategies-v4.json (3 strategies loaded)
+[19:21:55] Dry-run mode forced via CLI (--dry-run)
+[19:21:55] Loop budget set to 3s
+[19:21:55] === Currency Wars v4.7 Automation Loop Started ===
+[19:21:55] [Loop] dry_run=True max_runs=unlimited require_prep_ui=True scenes=[]
+[19:21:55] [Capture] Using window 'Honkai: Star Rail' (UnityWndClass)
+[19:21:55] [Capture] Frame 1906x1072 rescaled to 1920x1080 (clicks scaled by 0.9927, 0.9926). Set the game to exactly 1920x1080 windowed for best accuracy.
+[19:21:56] [State] Not in prep (HUD unreadable: {'gold': None, 'level': None, 'hp': 42}) and no scene template matched. Waiting instead of clicking blindly.
+[19:21:56] [Calibrate] If you are on the Preparation screen, the HUD ROIs do not match your layout. Run: python calibrate_currency_wars_1080p.py --strategy hsr_currency_wars_v4_7_strategies-v4.json (then restart the app).
+[19:21:59] [Loop] Reached --max-seconds=3; stopping
+[19:21:59] === Automation Loop Stopped ===
+[19:44:17] Tesseract OCR ready (version 5.5.3.20260724)
+[19:44:17] WGC capture engine verified.
+[19:44:17] [Scenes] Loaded 3 scene templates.
+[19:44:17] [Craft] Item templates not mapped (crafting will ignore these until you add aliases + verified entries in unit_registry.json): Aether Drill, Anti-Grav Boots, Bloodthirsty, Gilded Coin, Perpetual Engine, Photon Cell, Roller Skates, Starlight Blade, Vitality Core, Wealth Gem
+[19:44:17] [Templates] Preloaded 148 templates.
+[19:44:17] [Startup][WARN] Could not find window with title 'Honkai: Star Rail' - will wait indefinitely (start the game or press F12 to stop)
+[19:44:17] Strategy JSON: hsr_currency_wars_v4_7_strategies-v4.json (3 strategies loaded)
+[19:44:17] Dry-run mode forced via CLI (--dry-run)
+[19:44:17] Loop budget set to 1s
+[19:46:26] Tesseract OCR ready (version 5.5.3.20260724)
+[19:46:26] WGC capture engine verified.
+[19:46:26] [Scenes] Loaded 3 scene templates.
+[19:46:26] [Craft] Item templates not mapped (crafting will ignore these until you add aliases + verified entries in unit_registry.json): Aether Drill, Anti-Grav Boots, Bloodthirsty, Gilded Coin, Perpetual Engine, Photon Cell, Roller Skates, Starlight Blade, Vitality Core, Wealth Gem
+[19:46:26] [Templates] Preloaded 148 templates.
+[19:46:26] [Startup][WARN] Could not find window with title 'Honkai: Star Rail' - will wait indefinitely (start the game or press F12 to stop)
+[19:46:26] Strategy JSON: hsr_currency_wars_v4_7_strategies-v4.json (3 strategies loaded)
+[19:46:26] Dry-run mode forced via CLI (--dry-run)
+[19:46:26] Loop budget set to 5s
+[19:47:12] Tesseract OCR ready (version 5.5.3.20260724)
+[19:47:12] WGC capture engine verified.
+[19:47:12] [Scenes] Loaded 3 scene templates.
+[19:47:12] [Craft] Item templates not mapped (crafting will ignore these until you add aliases + verified entries in unit_registry.json): Aether Drill, Anti-Grav Boots, Bloodthirsty, Gilded Coin, Perpetual Engine, Photon Cell, Roller Skates, Starlight Blade, Vitality Core, Wealth Gem
+[19:47:12] [Templates] Preloaded 148 templates.
+[19:47:12] [Startup][WARN] Could not find window with title 'Honkai: Star Rail' - will wait indefinitely (start the game or press F12 to stop)
+[19:47:12] Strategy JSON: hsr_currency_wars_v4_7_strategies-v4.json (3 strategies loaded)
+[19:47:12] Dry-run mode forced via CLI (--dry-run)
+[19:47:12] Loop budget set to 5s
+[19:49:12] Tesseract OCR ready (version 5.5.3.20260724)
+[19:49:12] WGC capture engine verified.
+[19:49:12] [Scenes] Loaded 3 scene templates.
+[19:49:12] [Craft] Item templates not mapped (crafting will ignore these until you add aliases + verified entries in unit_registry.json): Aether Drill, Anti-Grav Boots, Bloodthirsty, Gilded Coin, Perpetual Engine, Photon Cell, Roller Skates, Starlight Blade, Vitality Core, Wealth Gem
+[19:49:12] [Templates] Preloaded 148 templates.
+[19:49:12] [Startup][WARN] Could not find window with title 'Honkai: Star Rail' - will wait indefinitely (start the game or press F12 to stop)
+[19:49:12] Strategy JSON: hsr_currency_wars_v4_7_strategies-v4.json (3 strategies loaded)
+[19:49:12] Dry-run mode forced via CLI (--dry-run)
+[19:49:12] Loop budget set to 5s
+[20:10:16] Tesseract OCR ready (version 5.5.3.20260724)
+[20:10:16] WGC capture engine verified.
+[20:10:16] [Scenes] Loaded 3 scene templates.
+[20:10:16] [Craft] Item templates not mapped (crafting will ignore these until you add aliases + verified entries in unit_registry.json): Aether Drill, Anti-Grav Boots, Bloodthirsty, Gilded Coin, Perpetual Engine, Photon Cell, Roller Skates, Starlight Blade, Vitality Core, Wealth Gem
+[20:10:16] [Templates] Preloaded 148 templates.
+[20:10:16] [Startup][WARN] Could not find window with title 'Honkai: Star Rail' - will wait indefinitely (start the game or press F12 to stop)
+[20:10:16] Strategy JSON: hsr_currency_wars_v4_7_strategies-v4.json (3 strategies loaded)
