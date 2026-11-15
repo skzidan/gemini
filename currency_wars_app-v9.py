@@ -1601,21 +1601,46 @@ class CurrencyWarsApp:
 
     def _build_general_tab(self):
         fr = self.tab_general
-        fields = [
-            ("Game Window Title", ("window_title",)), ("Resolution Width", ("resolution", "width")),
-            ("Resolution Height", ("resolution", "height")), ("Window Offset X", ("game_offset", "x")),
-            ("Window Offset Y", ("game_offset", "y")), ("Delay Between Cycles (s)", ("automation", "delay_between_runs_seconds")),
-            ("Pause Hotkey", ("safety", "pause_key")), ("Stop Hotkey", ("safety", "stop_key")),
-        ]
-        for r, (lbl, path) in enumerate(fields):
-            ttk.Label(fr, text=lbl).grid(row=r, column=0, sticky="w", padx=8, pady=6)
+
+        def _title(text):
+            ttk.Label(fr, text=text, foreground="#00E5FF", font=("Segoe UI", 10, "bold")).grid(
+                columnspan=2, sticky="w", padx=8, pady=(10, 2))
+
+        def _row(r, lbl, path, width=36):
+            ttk.Label(fr, text=lbl).grid(row=r, column=0, sticky="w", padx=(12, 4), pady=4)
             v = tk.StringVar()
-            ttk.Entry(fr, textvariable=v, width=32).grid(row=r, column=1, sticky="w", padx=8, pady=6)
+            ttk.Entry(fr, textvariable=v, width=width).grid(row=r, column=1, sticky="w", padx=4, pady=4)
             self.vars[path] = v
 
+        _title("Game Window")
+        _row(1, "Window Title", ("window_title",))
+        _row(2, "Executable Path (used by Launch Game)", ("game_path",), width=48)
+
+        _title("Display")
+        _row(4, "Resolution Width", ("resolution", "width"))
+        _row(5, "Resolution Height", ("resolution", "height"))
+        _row(6, "Window Offset X", ("game_offset", "x"))
+        _row(7, "Window Offset Y", ("game_offset", "y"))
+
+        _title("Timing")
+        _row(9, "Delay Between Cycles (s)", ("automation", "delay_between_runs_seconds"))
+
+        _title("Hotkeys")
+        _row(11, "Pause Hotkey", ("safety", "pause_key"))
+        _row(12, "Stop Hotkey", ("safety", "stop_key"))
+
     def _build_output_tab(self):
+        toolbar = ttk.Frame(self.tab_output)
+        toolbar.pack(fill="x", padx=6, pady=(6, 2))
+        ttk.Button(toolbar, text="Clear Console", command=self._clear_log).pack(side="left", padx=2)
         self.output_text = tk.Text(self.tab_output, bg="#05080F", fg="#7EE787", font=("Consolas", 9), state="disabled")
-        self.output_text.pack(fill="both", expand=True, padx=6, pady=6)
+        self.output_text.pack(fill="both", expand=True, padx=6, pady=(2, 6))
+
+    def _clear_log(self):
+        self.output_text.config(state="normal")
+        self.output_text.delete("1.0", "end")
+        self.output_text.config(state="disabled")
+        self.log("[Console] Cleared.")
 
     def _refresh_strategy_summary(self):
         self.config["active_strategy_id"] = self.strat_var.get()
